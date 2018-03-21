@@ -45,7 +45,7 @@ class Bubble{
             this.y= -this.y;
         }
         if(mouseIsPressed){
-            this.y= this.y;
+            this.y= 0;
         }
     }
 
