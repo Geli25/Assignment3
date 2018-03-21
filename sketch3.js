@@ -32,7 +32,7 @@ function loadData(){
 
 class Bubble{
     constructor(tempX,tempY,tempR,tempAA,tempMonth,speed){
-        this.x = random(0,700);
+        this.x = random(50,700);
         this.y = random(-500,200);
         this.r = random(2,10);
         this.AA = Number(tempAA);
@@ -45,7 +45,7 @@ class Bubble{
             this.y= -this.y;
         }
         if(mouseIsPressed){
-            this.y= 0;
+            this.y= -30;
         }
     }
 
@@ -89,6 +89,7 @@ class Bubble{
             fill(255,0,13);
         }
         rotate(radians(this.month));
+        ellipse(this.x,10,this.month*10,this.month*10);
         rect(this.x, this.y, this.month*10, this.AA);
 
     }
