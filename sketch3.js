@@ -4,6 +4,7 @@ var bubbles=[];
 
 function preload(){
     table = loadTable('Museum_Visitors.csv','header');
+    //console.log(table)
 }
 
 function setup(){
@@ -20,7 +21,6 @@ function draw(){
 
     for (var i = 0; i<bubbles.length; i++){
         bubbles[i].display();
-        bubbles[i].fall();
     }
 }
 
@@ -28,21 +28,25 @@ function loadData(){
     var AA=[];
     for (var a = 0;a < table.getRowCount(); a++){
         var row = table.getRow(a);
-        AA[a] = row.get('Avila Adobe');
+        //AA[a] = row.get('Avila Adobe');
         var month = Number(row.get('Month'));
+        var aa = Number(row.get('Avila Adobe'));
 
-        for (var i=0;i<AA[a]/100;i++){
-        console.log(AA[a]/100);
-        bubbles[i]=new Bubble(random(200,1000),random(100,200),month);
-        }
+        //console.log(table.getRowCount())
+
+       // for(var i=0;i<(AA[a]/100);i++){
+       // console.log(AA[a]/100);
+        bubbles[a]=new Bubble(random(300,1000),random(100,200),month, aa);
+       // }
     }
 }
 
 class Bubble{
-    constructor(tempX,tempY,tempMonth){
+    constructor(tempX,tempY,tempMonth, tempAA){
         this.x = tempX;
         this.y = tempY;
         this.month=Number(tempMonth);
+        this.aa = tempAA;
     }
 
     fall(){
@@ -95,11 +99,11 @@ class Bubble{
             //console.log("this color is being read9");
         }
         if (this.month==10){
-            fill('#93B3AF');
+            fill('#DC4E1B');
             //console.log("this color is being read10");
         }
         if (this.month==11){
-            fill('#DC4E1B');
+            fill('#93B3AF');
             //console.log("this color is being read11");
         }
         if (this.month==12){
@@ -107,8 +111,9 @@ class Bubble{
             //console.log("this color is being read12");
         }
         rotate(radians(this.month));
-        ellipse(this.x,this.y,this.month,this.month*1.5);
-        //console.log ("ellipse created");
+        for(let i=0; i<this.aa/20; i++){
+            ellipse(random(0, this.aa/30), random(0, this.aa/150),random(5,15),random(5,15));
+        }
 
     }
 
